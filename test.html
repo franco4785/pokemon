@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>title</title>
+</head>
+<body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$.ajax({
+			type: "POST",
+			url: "https://discordapp.com/api/webhooks/504334065571463198/SfjidkIfRC-V5ybyj8nv_5fATEzFs9XkvqSCq_ThgYU2w-QSGgIQ7u6zklyHOGdp2TgA",
+			data: {
+				"username": "Bot Name Here",
+				"content": "Test",
+				"embeds": [{
+					"title": "Rare or 100 <Pokemon Name>!"		
+				}]
+
+			},
+
+			dataType: "json"
+		})
+		.done(function(response) {
+			alert( "success" );
+			console.log(response);
+		})
+		.fail(function (jqXHR, exception) {
+			var msg_err = "";
+			if (jqXHR.status === 0) {
+				msg_err = "Not connect. Verify Network.";
+			}
+			else if (jqXHR.status == 404) {
+				msg_err = "Requested page not found. [404]";
+			}
+			else if (jqXHR.status == 500) {
+				msg_err = "Internal Server Error [500].";
+			}
+			else if (exception === "parsererror") {
+				msg_err = "Requested JSON parse failed.";
+			}
+			else if (exception === "timeout") {
+				msg_err = "Time out error.";
+			}
+			else if (exception === "abort") {
+				msg_err = "Ajax request aborted.";
+			}
+			else {
+				msg_err = "Uncaught Error. "+ jqXHR.responseText;
+			}
+			alert(msg_err);
+		})
+		.always(function() {
+			alert("complete");
+		});
+	});
+</script>
+</body>
+</html>
